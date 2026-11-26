@@ -9,10 +9,12 @@ namespace Lab1
     {
         public static int ReadInt32(string prompt, int minValue, int maxValue)
         {
+            bool isNumber;
+            int value;
             while (true)
             {
                 Console.Write(prompt);
-                var isNumber = int.TryParse(ReadLine(), CultureInfo.InvariantCulture, out var value);
+                isNumber = int.TryParse(ReadLine(), CultureInfo.InvariantCulture, out value);
                 if (isNumber && value >= minValue && value <= maxValue)
                 {
                     return value;
@@ -24,10 +26,11 @@ namespace Lab1
 
         public static long ReadInt64(string prompt)
         {
+            long value;
             while (true)
             {
                 Console.Write(prompt);
-                if (long.TryParse(ReadLine(), CultureInfo.InvariantCulture, out var value))
+                if (long.TryParse(ReadLine(), CultureInfo.InvariantCulture, out value))
                 {
                     return value;
                 }
@@ -38,11 +41,14 @@ namespace Lab1
 
         public static double ReadDouble(string prompt, double maxAbsValue)
         {
+            string text;
+            bool isNumber;
+            double value;
             while (true)
             {
                 Console.Write(prompt);
-                var text = ReadLine().Replace(',', '.');
-                var isNumber = double.TryParse(text, CultureInfo.InvariantCulture, out var value);
+                text = ReadLine().Replace(',', '.');
+                isNumber = double.TryParse(text, CultureInfo.InvariantCulture, out value);
                 if (isNumber && Math.Abs(value) <= maxAbsValue)
                 {
                     return value;
@@ -54,10 +60,11 @@ namespace Lab1
 
         public static char ReadChar(string prompt)
         {
+            string text;
             while (true)
             {
                 Console.Write(prompt);
-                var text = ReadLine();
+                text = ReadLine();
                 if (text.Length == 1)
                 {
                     return text[0];
@@ -69,10 +76,11 @@ namespace Lab1
 
         public static int[] ReadIntArray(string prompt, bool allowEmpty)
         {
+            int[] numbers;
             while (true)
             {
                 Console.Write(prompt);
-                if (TryParseIntArray(ReadLine(), out var numbers) && (allowEmpty || numbers.Length > 0))
+                if (TryParseIntArray(ReadLine(), out numbers) && (allowEmpty || numbers.Length > 0))
                 {
                     return numbers;
                 }
@@ -85,9 +93,10 @@ namespace Lab1
         {
             var parts = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             var parsed = new List<int>();
+            int number;
             foreach (var part in parts)
             {
-                if (!int.TryParse(part, CultureInfo.InvariantCulture, out var number))
+                if (!int.TryParse(part, CultureInfo.InvariantCulture, out number))
                 {
                     numbers = Array.Empty<int>();
                     return false;

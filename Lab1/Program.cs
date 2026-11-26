@@ -21,10 +21,11 @@ namespace Lab1
         {
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
+            int taskNumber;
             while (true)
             {
                 Console.WriteLine(Menu);
-                var taskNumber = ConsoleInput.ReadInt32("Номер задания: ", 0, 4);
+                taskNumber = ConsoleInput.ReadInt32("Номер задания: ", 0, 4);
                 if (taskNumber == 0)
                 {
                     return;
@@ -176,9 +177,10 @@ namespace Lab1
 
         private static char ReadDigitChar(string prompt)
         {
+            char symbol;
             while (true)
             {
-                var symbol = ConsoleInput.ReadChar(prompt);
+                symbol = ConsoleInput.ReadChar(prompt);
                 if (symbol >= '0' && symbol <= '9')
                 {
                     return symbol;
